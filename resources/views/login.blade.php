@@ -23,24 +23,46 @@
   <script src="{{URL::to('dashboard/js/bootstrap.min.js')}}"></script> --}}
   <script src="{{URL::to('jquery.min.js')}}"></script>
   <script src="{{URL::to('bootstrap.min.js')}}"></script>
-  @yield('styles')
+  <script src="{{URL::to('sweet.js')}}"></script>
+
+  <style type="text/css">
+    body{
+      background-color: #7f8c8d;
+    }
+    .well{
+      margin-top: 20%;
+      border-radius: 20px;
+    }
+    #logo{
+      margin-top: -50px;
+    }
+  </style>
 </head>
 
 <body>
- 
-  <section id="container" class="">
-  
-    @include('user.nav')
-    @include('user.side')
-   
-    <section id="main-content">
-      <section class="wrapper">
-       @yield('contents')
-      </section>
-    </section>
-  
-
- 
+  <div class="container">
+    
+    <div class="col-md-offset-4 col-md-4 well">
+      <center id="logo">
+        <img src="{{URL::to('images/logo.png')}}" width="80px" height="80px">
+      </center>
+      <form action="{{route('login_check')}}" method="POST">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" required="">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" required="">
+        </div>
+        <div class="form-group">
+          @csrf
+          <button type="submit" class="btn btn-warning">Submit</button>
+          <a href="{{route('register')}}" class="btn btn-default">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
 
 </body>
 
@@ -48,5 +70,12 @@
   <script src="{{URL::to('dashboard/js/jquery.scrollTo.min.js')}}"></script>
   <script src="{{URL::to('dashboard/js/jquery.nicescroll.js')}}"></script>
   <script src="{{URL::to('dashboard/js/scripts.js')}}"></script>
-  @yield('scripts');
+  <script type="text/javascript">
+    @if(Session::has('success'))
+      swal("Good job!", "You successfully registered!", "success");
+    @endif
+    @if(Session::has('error'))
+      swal("Oops!", "Invalid Email/Password", "error");
+    @endif
+  </script>
 </html>

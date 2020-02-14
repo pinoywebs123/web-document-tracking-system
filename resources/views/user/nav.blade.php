@@ -4,7 +4,7 @@
       </div>
 
      
-      <a href="index.html" class="logo">Water Billing System <span class="lite">Admin</span></a>
+      <a href="index.html" class="logo">NORSU Bais<span class="lite">Document Tracking System </span></a>
      
 
       <div class="nav search-row" id="top_menu">
@@ -18,14 +18,14 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                            
-                            <span class="username">#</span>
+                            <span class="username">{{Auth::user()->getName()}}</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
               
               <li>
-                <a href="#"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="{{route('user_logout')}}"><i class="icon_key_alt"></i> Log Out</a>
               </li>
              
             </ul>
