@@ -4,7 +4,7 @@
       </div>
 
      
-      <a href="index.html" class="logo">NORSU Bais<span class="lite">Document Tracking System </span></a>
+      <a href="index.html" class="logo">NORSU Bais Document Tracking System <span class="lite"></span></a>
      
 
       <div class="nav search-row" id="top_menu">

@@ -37,7 +37,15 @@ Route::group(['prefix'=> 'user'], function(){
 	]);
 	Route::get('/new',[
 		'as'	=> 'user_new',
-		'uses'	=> 'UserController@user_new'
+		'uses'	=> 'DocumentController@user_new'
+	]);
+	Route::post('/upload-docs',[
+		'as'	=> 'upload_docs',
+		'uses'	=> 'DocumentController@upload_docs'
+	]);
+	Route::get('/download-docs',[
+		'as'	=> 'download_docs',
+		'uses'	=> 'DocumentController@download_docs'
 	]);
 	Route::get('/pending',[
 		'as'	=> 'user_pending',
@@ -50,6 +58,11 @@ Route::group(['prefix'=> 'user'], function(){
 	Route::get('/forwarded',[
 		'as'	=> 'user_forwarded',
 		'uses'	=> 'UserController@user_forwarded'
+	]);
+
+	Route::get('/accept-file/{id}',[
+		'as'	=> 'accept_file',
+		'uses'	=> 'UserController@accept_file'
 	]);
 
 });

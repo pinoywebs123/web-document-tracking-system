@@ -14,12 +14,12 @@
                   <span>Submit New</span>
             </a>
           </li>
-          <li class="@if(Request::segment(2) == 'pending') active @endif">
+          <!-- <li class="@if(Request::segment(2) == 'pending') active @endif">
             <a class="" href="{{route('user_pending')}}">
                   <i class="icon_folder-add"></i>
                   <span>Pending</span>
             </a>
-          </li>
+          </li> -->
           <li class="@if(Request::segment(2) == 'incoming') active @endif">
             <a class="" href="{{route('user_incoming')}}">
                   <i class="icon_mail"></i>

@@ -60,12 +60,12 @@
           </div>
 
           <div class="form-group">
-            <label>Department</label>
-            <select name="department_id" class="form-control">
-              <option value="1">Guest</option>
-              <option value="2">CAS</option>
-              <option value="3">Registrar</option>
-            </select>
+            <label>Select Department</label>
+                <select name="department_id" class="form-control" required=""> 
+                            @foreach($departments as $dep)
+                                <option value="{{$dep->id}}">{{$dep->name}}</option>
+                            @endforeach
+                </select>
           </div>
          <div class="form-group">
             <label>Date of Birth</label>

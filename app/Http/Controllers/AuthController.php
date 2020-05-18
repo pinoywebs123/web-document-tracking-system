@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\Department;
 class AuthController extends Controller
 {
     
@@ -27,8 +28,9 @@ class AuthController extends Controller
 
     public function register()
     {
+        $departments = Department::all();
     	//register form
-    	return view('register');
+    	return view('register',compact('departments'));
     }
     public function register_check(Request $request)
     {

@@ -23,6 +23,7 @@
   <script src="{{URL::to('dashboard/js/bootstrap.min.js')}}"></script> --}}
   <script src="{{URL::to('jquery.min.js')}}"></script>
   <script src="{{URL::to('bootstrap.min.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   @yield('styles')
 </head>
 
@@ -48,5 +49,37 @@
   <script src="{{URL::to('dashboard/js/jquery.scrollTo.min.js')}}"></script>
   <script src="{{URL::to('dashboard/js/jquery.nicescroll.js')}}"></script>
   <script src="{{URL::to('dashboard/js/scripts.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script type="text/javascript">
+    @if(Session::has('success'))
+    Toastify({
+      text: "{{Session::get('success')}}",
+      duration: 3000, 
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: 'right', // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      onClick: function(){} // Callback after click
+    }).showToast();
+
+    @endif
+
+    @if(Session::has('error'))
+    Toastify({
+      text: "Thank You!",
+      duration: 3000, 
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: 'right', // `left`, `center` or `right`
+     
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      onClick: function(){} // Callback after click
+    }).showToast();
+
+    @endif
+    
+  </script>
   @yield('scripts');
 </html>
