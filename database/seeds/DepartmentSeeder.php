@@ -12,9 +12,19 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
+        Department::create(['name'=> 'CTED']);
+        Department::create(['name'=> 'CBA']);
+        Department::create(['name'=> 'CIT']);
         Department::create(['name'=> 'CAS']);
-        Department::create(['name'=> 'Director']);
-        Department::create(['name'=> 'Cashier']);
-        Department::create(['name'=> 'Registrar']);
+
+        Department::create(['name'=> 'CARE']);
+        Department::create(['name'=> 'SUPPLY OFFICE']);
+        Department::create(['name'=> 'Buildings ang Grounds']);
+        Department::create(['name'=> 'ACCOUNTING']);
+        Department::create(['name'=> 'CASHIER']);
+        Department::create(['name'=> 'Library']);
+        Department::create(['name'=> 'CCJE']);
+        Department::create(['name'=> 'Registrar\'s office']);
+        Department::create(['name'=> 'SAO']);
     }
 }

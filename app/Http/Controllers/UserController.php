@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use App\DocumentTracking;
 use Illuminate\Support\Facades\Storage;
 use App\Document;
 use Illuminate\Support\Str;
+use App\History;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -39,8 +41,10 @@ class UserController extends Controller
     }
     public function user_forwarded()
     {
+        $my_histories = History::where('approved_by', Auth::id())->get();
+
     	//forwarded or history
-    	return view('user.forwarded');
+    	return view('user.forwarded',compact('my_histories'));
     }
 
     public function accept_file($id)

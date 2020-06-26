@@ -3,6 +3,7 @@
 <h1>Incoming Files</h1>
 <table class="table">
 	<thead>
+		<th>Code</th>
 		<th>Posted by</th>
 		<th>Document</th>
 		<th>Department from</th>
@@ -17,6 +18,7 @@
 		@foreach($incomings as $inc)
 			
 			<tr>
+				<td>{{$inc->document->random_string}}</td>
 				<td>{{$inc->user->first_name}} {{$inc->user->last_name}}</td>
 				<td>
 					<a href="{{Storage::url($inc->document->name)}}">{{$inc->document->name}}</a>
@@ -42,7 +44,7 @@
 					@if($inc->status_id == 1)
 						<a href="{{route('accept_file',$inc->id)}}" class="btn btn-primary btn-xs">Accept</a>
 					@elseif($inc->status_id == 2)
-						<a href="#" class="btn btn-danger btn-xs">Forward</a>
+						<a href="{{route('forwarding',['tracking_id' => $inc->id])}}" class="btn btn-danger btn-xs">Forward</a>
 					@endif
 					
 				</td>

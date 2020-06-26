@@ -34,7 +34,7 @@ class DocumentController extends Controller
 	   
 	    $url = Storage::putFileAs('public', $request->file('document'),$cover);
 
-	    $random = Str::random(40);
+	    $random = Str::random(10);
 
 	    $new_doc = new Document;
 	    $new_doc->random_string = $random;

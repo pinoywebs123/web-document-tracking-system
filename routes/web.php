@@ -24,6 +24,14 @@ Route::group(['prefix' => 'auth'], function(){
 		'as'	=> 'register_check',
 		'uses'	=> 'AuthController@register_check'
 	]);
+	Route::get('/tracking',[
+		'as'	=> 'track_view',
+		'uses'	=> 'TrackingController@track_view'
+	]);
+	Route::post('/tracking',[
+		'as'	=> 'track_check',
+		'uses'	=> 'TrackingController@track_check'
+	]);
 });
 
 Route::group(['prefix'=> 'user'], function(){
@@ -64,5 +72,14 @@ Route::group(['prefix'=> 'user'], function(){
 		'as'	=> 'accept_file',
 		'uses'	=> 'UserController@accept_file'
 	]);
+	Route::get('/forwarding/{tracking_id}',[
+		'as'	=> 'forwarding',
+		'uses'	=> 'TrackingController@forwarding'
+	]);
+	Route::post('/forwarding/{tracking_id}',[
+		'as'	=> 'forwarding_check',
+		'uses'	=> 'TrackingController@forwarding_check'
+	]);
+	
 
 });

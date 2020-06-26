@@ -8,6 +8,8 @@ use App\Department;
 
 class DocumentTracking extends Model
 {
+    protected $guarded = [];
+    
     public function user()
     {
     	return $this->belongsTo('App\User','posted_by','id');

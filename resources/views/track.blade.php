@@ -43,23 +43,17 @@
   <div class="container">
     
     <div class="col-md-offset-4 col-md-4 well">
-      <center id="logo">
-        <img src="{{URL::to('images/logo.png')}}" width="80px" height="80px">
-      </center>
-      <form action="{{route('login_check')}}" method="POST">
+      
+      <form action="{{route('track_check')}}" method="POST">
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" class="form-control" required="">
+          <label>Tracking Code</label>
+          <input type="text" name="tracking" class="form-control" required="">
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" required="">
-        </div>
+       
         <div class="form-group">
           @csrf
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
-          <a href="{{route('register')}}" class="btn btn-default btn-block">Register</a>
-          <a href="{{route('track_view')}}" class="btn btn-danger btn-block">Trace File</a>
+          <button type="submit" class="btn btn-danger btn-block">Submit</button>
+         
         </div>
       </form>
     </div>
@@ -72,11 +66,9 @@
   <script src="{{URL::to('dashboard/js/jquery.nicescroll.js')}}"></script>
   <script src="{{URL::to('dashboard/js/scripts.js')}}"></script>
   <script type="text/javascript">
-    @if(Session::has('success'))
-      swal("Good job!", "You successfully registered!", "success");
-    @endif
+    
     @if(Session::has('error'))
-      swal("Oops!", "Invalid Email/Password", "error");
+      swal("Oops!", "Invalid Tracking Code", "error");
     @endif
   </script>
 </html>

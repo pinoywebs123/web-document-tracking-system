@@ -41,28 +41,49 @@
 
 <body>
   <div class="container">
+   
+  <div class="well">
+    <table class="table">
+      <thead>
+        <th>Code</th>
+        <th>Posted by</th>
+        <th>Document</th>
+        <th>Department from</th>
+        <th>Department to</th>
+        <th>Status</th>
+        <th>Approved by</th>
+        <th>Created</th>
+        
+      </thead>
+      <tbody>
+       <tr>
+         <td>{{$find_document->random_string}}</td>
+         <td>{{$find_document->tracking->user->first_name}} {{$find_document->tracking->user->last_name}}</td>
+          <td>{{$find_document->name}}</td>
+          <td>{{$find_document->tracking->department_from($find_document->tracking->department_from)->name}}</td> 
+          <td>{{$find_document->tracking->department->name}}</td>
+          <td>
+            @if($find_document->tracking->status_id == 1)
+              <button class="btn btn-danger btn-xs">Pending</button>
+            @else
+              <button class="btn btn-primary btn-xs">Approved</button>
+            @endif
+          </td> 
+          <td>
+           @if($find_document->tracking->approved_by != null)
+            $find_document->tracking->approved($find_document->tracking->approved_by)
+           @else
+            Pending
+           @endif
+          </td>
+          <td>{{$find_document->tracking->created_at->diffForHumans()}}</td>
+       </tr>
+      </tbody>
+    </table>
+
     
-    <div class="col-md-offset-4 col-md-4 well">
-      <center id="logo">
-        <img src="{{URL::to('images/logo.png')}}" width="80px" height="80px">
-      </center>
-      <form action="{{route('login_check')}}" method="POST">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" class="form-control" required="">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" required="">
-        </div>
-        <div class="form-group">
-          @csrf
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
-          <a href="{{route('register')}}" class="btn btn-default btn-block">Register</a>
-          <a href="{{route('track_view')}}" class="btn btn-danger btn-block">Trace File</a>
-        </div>
-      </form>
-    </div>
+  </div>
+   
   </div>
 
 </body>
@@ -72,11 +93,9 @@
   <script src="{{URL::to('dashboard/js/jquery.nicescroll.js')}}"></script>
   <script src="{{URL::to('dashboard/js/scripts.js')}}"></script>
   <script type="text/javascript">
-    @if(Session::has('success'))
-      swal("Good job!", "You successfully registered!", "success");
-    @endif
+    
     @if(Session::has('error'))
-      swal("Oops!", "Invalid Email/Password", "error");
+      swal("Oops!", "Invalid Tracking Code", "error");
     @endif
   </script>
 </html>
