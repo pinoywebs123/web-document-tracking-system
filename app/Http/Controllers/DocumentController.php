@@ -10,6 +10,8 @@ use App\DocumentTracking;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Department;
+use App\History;
+
 
 class DocumentController extends Controller
 {
@@ -34,7 +36,7 @@ class DocumentController extends Controller
 	   
 	    $url = Storage::putFileAs('public', $request->file('document'),$cover);
 
-	    $random = Str::random(10);
+	    $random = Str::random(6);
 
 	    $new_doc = new Document;
 	    $new_doc->random_string = $random;
@@ -50,7 +52,16 @@ class DocumentController extends Controller
 	    $doc_track->department_id = $request->department;
 	    $doc_track->status_id = 1;
 	    $doc_track->approved_by = null;
-	    $doc_track->save();
+		$doc_track->save();
+
+		$his = new History;
+		$his->document_id 	= $new_doc->id;
+		$his->posted_by		= Auth::id();
+		$his->department_id = Auth::user()->department_id;
+		$his->approved_by = Auth::id();
+		$his->save();
+		
+
 
         return redirect()->back()->with('success','Upload Successfully!');
 	   

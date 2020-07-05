@@ -8,6 +8,7 @@ use App\Document;
 use App\DocumentTracking;
 use App\History;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TrackingController extends Controller
 {
@@ -20,13 +21,23 @@ class TrackingController extends Controller
 
     public function forwarding_check(Request $request, $tracking_id)
     {
+		$request->validate([
+            'document' => 'required|max:9048',
+            'department_id' => 'required'
+        ]);
     	
     	$find_tracking = DocumentTracking::find($tracking_id);
     	if(!$find_tracking){
     		return back()->with('error','Tracking ID Can not be found');
     	}
 
-    	
+		
+		$cover = $request->file('document')->getClientOriginalName();
+
+		$url = Storage::putFileAs('public', $request->file('document'),$cover);
+		
+		$find_tracking->document->update(['name'=> $cover]);
+
     	DB::beginTransaction();
 
     	$history = new History;
@@ -58,8 +69,10 @@ class TrackingController extends Controller
         $find_document = Document::where('random_string', $request->tracking)->first();
         if(!$find_document){
             return back()->with('error','Tracking ID Can not be found');
-        }
+		}
+		
+		$histories = History::where('document_id', $find_document->id)->orderBy('id','desc')->get();
        
-        return view('track_result',compact('find_document'));
+        return view('track_result',compact('histories','find_document'));
     }
 }

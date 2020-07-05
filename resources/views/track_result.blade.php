@@ -41,8 +41,9 @@
 
 <body>
   <div class="container">
-   
+  
   <div class="well">
+  <a href="{{route('login')}}" class="btn btn-primary text-center">Home</a>
     <table class="table">
       <thead>
         <th>Code</th>
@@ -71,7 +72,7 @@
           </td> 
           <td>
            @if($find_document->tracking->approved_by != null)
-            $find_document->tracking->approved($find_document->tracking->approved_by)
+            {{$find_document->tracking->approved($find_document->tracking->approved_by)}}
            @else
             Pending
            @endif

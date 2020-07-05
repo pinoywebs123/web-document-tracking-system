@@ -49,14 +49,14 @@ class UserController extends Controller
 
     public function accept_file($id)
     {
-        $random = Str::random(40);
+        ///$random = Str::random(6);
         $find = DocumentTracking::where('document_id',$id)->first();
         if($find)
         {
            $doc = Document::findOrFail($id);
-           $doc->update([
-            'random_string' => $random
-           ]);
+        //    $doc->update([
+        //     'random_string' => $random
+        //    ]);
 
            $find->status_id = 2;
            $find->approved_by = Auth::id();
