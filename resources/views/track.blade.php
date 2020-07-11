@@ -43,11 +43,11 @@
   <div class="container">
     
     <div class="col-md-offset-4 col-md-4 well">
-      
+      <h4 class="text-center">DOCUMENT TRACKING SYSTEM IN NORSU-BCC</h4>
       <form action="{{route('track_check')}}" method="POST">
         <div class="form-group">
-          <label>Tracking Code</label>
-          <input type="text" name="tracking" class="form-control" required="">
+         
+          <input type="text" name="tracking" class="form-control" required="" placeholder="Enter Tracking Code">
         </div>
        
         <div class="form-group">
